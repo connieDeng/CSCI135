@@ -1,0 +1,24 @@
+CXXFLAGS=-std=c++11
+main:
+	g++ $(CXXFLAGS) -o main main.cpp
+
+main.o: main.cpp methods.h
+	g++ $(CXXFLAGS) -c main.cpp
+
+methods.o: methods.h methods.hxx
+	g++ $(CXXFLAGS) -c methods.hxx
+
+poem: poem.cpp
+	g++ -o poem poem.cpp
+
+tests: 
+	g++ $(CXXFLAGS) -o tests tests.cpp
+
+tests.o: tests.cpp
+	g++ $(CXXFLAGS) -c tests.cpp
+
+clean:
+	rm -f main.o methods.o tests.o main tests
+
+# tests: tests.o methods.o
+# 	g++ -o tests tests.o methods.o

@@ -1,19 +1,12 @@
 #!/usr/bin/env  perl
-# make_array_of_recs.pl  -- shows how to build arrays of records
+#treequery.pl
 # 
-# Usage                : make_array_of_recs.pl
+# Usage                : treequery.pl nyctreedata.csv
 #            
-# Written by           : Stewart Weiss
-# Created on           : December 10, 2009
-# Modified on          : November 28, 2010
-#                        Changed the print function to be symmetric with the
-#                        createRec function
+# Written by           : Connie Deng
+# Created on           : December 13, 2018
 #               
-# Description          : This shows how to create an array of simple records
-#                        in which a record is a hash consisting of three scalars  
-#                        and an array of integers.
-#                        The data is stored in the file after the __DATA__ 
-#                        keyword.
+# Description          : user inputs tree name and program prints out info
 #
 #*******************************************************************************             
 
@@ -37,8 +30,7 @@ while ( <DATA> ) #read line by line
 	chomp;
 	@lines = <DATA>;
 }
-#print $lines[0];
-#print $lines[0];
+
 #print $#lines; is 12+1 = 13
 for(my $x = 0; $x < $#lines+1; $x++)
 {	#find ending
@@ -51,8 +43,17 @@ for(my $x = 0; $x < $#lines+1; $x++)
 	my $zipcode = $treeInfo[4];
 	my $boroname = $treeInfo[5];
 	my $neighborhood = $treeInfo[6];
+	my $latitude = $treeInfo[7];
+	my $longitude = $treeInfo[8];
 
-	my %tree = (
+	my %gps_coordinates = (
+		latitude => $latitude,
+		longitude => $longitude,
+	);
+
+	#my $coord_ref = \%gps_coordinates;
+
+	my $tree = {
 		tree_id => $id,
 		tree_dbh => $diameter,
 		health => $condition,
@@ -60,32 +61,38 @@ for(my $x = 0; $x < $#lines+1; $x++)
 		zipcode => $zipcode,
 		boroname => $boroname,
 		nta_name => $neighborhood,
-		#gps_coordinates => {%gps_coordinates},
-	);
+		gps_coordinates => {%gps_coordinates},
+	};
 
-	my $hash_ref = \%tree;
+	#my $hash_ref = \%tree;
 
-	push(@nyc_trees, $hash_ref);
+	push(@nyc_trees, $tree);
 }
 
-my $ifMatchCount = 0; #count
-my $zipcodes; 
-my ($manhattan, $bronx, $brooklyn, $queens, $statenIsland, $diameter) = (0)x6;
-my $boroughMaxCount = 0;
-my $boroughMax;
+#--------------------------------------------------------------------------------
 
-print "Enter the name of a type of tree, or enter \"quit\" to quit: ";
-my $input = <STDIN>;
-chomp $input;
+my $input = "";
 
-if($input eq "quit")
+until($input eq "quit")
 {
-	print "You have quit";
-	exit;
-}
+	
+	my $ifMatchCount = 0; #count
+	my $zipcodes; 
+	my ($manhattan, $bronx, $brooklyn, $queens, $statenIsland, $diameter) = (0)x6;
+	my $boroughMaxCount = 0;
+	my $boroughMax;
 
-else
-{
+	print "Enter the name of a type of tree, or enter \"quit\" to quit: ";
+	my $input = <STDIN>;
+	chomp $input;
+
+	if($input eq "quit")
+	{
+		print "You have quit";
+		exit;
+	}
+
+
 	for(my $x = 0; $x < $#lines+1; $x++)
 	{
 		if($input eq ${$nyc_trees[$x]}{pc_common})
@@ -109,9 +116,9 @@ else
 		}
 	}
 
-	until($ifMatchCount >= 1)
+	until($ifMatchCount != 0)
 	{
-		print "Enter the name of a type of tree: ";
+		print "Enter the name of a type of tree, or enter \"quit\" to quit: ";
 		my $input = <STDIN>;
 		chomp $input;
 
@@ -149,13 +156,17 @@ else
 
 	if($ifMatchCount >= 1)
 	{
+		print "\n";
 		print "total number of such trees: " . $ifMatchCount . "\n";
 		print "zip codes in which this tree is found: " . substr($zipcodes, 0 , -1) . "\n";
 		print "borough containing the largest number of such trees: " . $boroughMax . ", with " . $boroughMaxCount . "\n";
-		print "average diameter: " . $diameter/$ifMatchCount;
+		print "average diameter: " . $diameter/$ifMatchCount . "\n";
+		print "\n";
 	}	
 }
 
+print "You have quit";
+exit;
 
 __DATA__
 581553,4,Good,cherry,11434,Queens,St. Albans,40.68408642,-73.77201854

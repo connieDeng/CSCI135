@@ -1,3 +1,12 @@
+/*
+Author: Connie Deng
+Course: CSCI-133
+Instructor: Mike Zamansky
+Assignment: Lab13
+
+recreate vector class with template
+*/
+
 #include <iostream>
 #include "methods.h"
 using namespace std;

@@ -6,7 +6,8 @@
 
 using namespace std;
 
-// Third CSCI 135 project
+// Third CSCI 135 section 1 project
+// purpose is to practice and experiment with algorithms
 const int MAX_ROWS = 40;	//constant variables
 const int MAX_COLS = 40;
 const int MAX_NUM = 10;

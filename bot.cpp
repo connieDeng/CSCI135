@@ -5,7 +5,7 @@
 #include "bot.h"
 
 using namespace std;
-
+// hi
 const int MAX_ROWS = 40;	//constant variables
 const int MAX_COLS = 40;
 const int MAX_NUM = 10;

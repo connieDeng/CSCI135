@@ -1,0 +1,56 @@
+* Please fill out this section:
+** Name: Connie Deng
+** GitHub username: connieDeng
+
+
+* Assignment 1
+
+** Do not edit these files:
+- .travis.yml
+- Makefile
+- 
+** Do not add any files to the repo
+You can add them locally but don't git add or push them.
+
+** Make changes in:
+- funcs.cpp, funcs.h to complete the assignment
+- Readme.org - add the specified info at the top
+
+
+** Instructions
+- Go to ~http://travisci.com~ and log in / connect to Github. If that
+  gives you a problem try travisci.org. By doing this, Travis should
+  run the tests on your assignment every time you push. You can check
+  out the status by looking at the Travis web site. It should also
+  send you an email with the results of the tests on each build. It's
+  faster to run the tests locally but this is a sanity check to make
+  sure what you pushed works. It's also what I will use on your
+  submissions.
+
+
+
+- Add a function ~int sum(int n)~ to funcs.cpp/funcs.h. This function
+  should calculate the sum of all the integers between 0 and n inclusive.
+
+- Add a function ~int fact(int n);~ to funcs.cpp/funcs.h. This
+  function should calculate and return the factorial of the parameter
+  n.
+
+- When you run:
+  - ~make test~
+  - ~./test/~
+
+All tests should pass
+
+- make sure to commit and push the repo back to GitHub
+
+* Important notes
+** Due Date
+- This assignment is due on Wednesday morning 2/2 at 8:00am. 
+** Testing
+Note that this assignment uses doctest instead of catch. It's mostly
+the same but much faster. You can find more information on doctest
+here: https://github.com/onqtam/doctest
+** GitHub classroom
+I'm assigning this to test out GitHub classroom so as to see if it
+makes sense for the class

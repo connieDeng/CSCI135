@@ -1,3 +1,4 @@
+
 #include <iostream>
 #include "funcs.h"
 
@@ -5,7 +6,7 @@
 // Add your functions here
 int sum(int n)
 {
-	return(1+n)*(n/2);
+	return (n*(n+1))/2;
 }
 
 int fact(int n)
@@ -15,12 +16,4 @@ int fact(int n)
 	
 	else
         return 1;
-}
-
-int factorial(int n, int a, int b, int c)
-{
-	if (n==0)
-		return a;
-	else
-		return factorial(n-1,b,c,b+c);
 }

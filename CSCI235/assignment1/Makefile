@@ -1,4 +1,4 @@
-CXXFLAGS=-std=c++14
+CXXFLAGS=-std=c++11
 
 main: main.o funcs.o
 	g++ $(CXXFLAGS) -o main main.o funcs.o

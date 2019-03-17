@@ -5,8 +5,6 @@
 
 int main()
 {
-    std::cout << sum(100);	//5050
-	std::cout << fact(5);	//120
-	std::cout << factorial(5,1,1,2);	//120
+    std::cout << sum(100) << std::endl << fact(5);
 	return 0;
 }
